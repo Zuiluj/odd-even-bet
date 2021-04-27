@@ -1,18 +1,18 @@
-const assert = require('assert');
-const ganache = require('ganache-cli');
-const Web3 = require('web3');
+const assert = require("assert");
+const ganache = require("ganache-cli");
+const Web3 = require("web3");
 const provider = ganache.provider();
 const web3 = new Web3(provider);
 
-const compiledDeployer = require('../ethereum/build/BetFactory.json');
-const compiledBettingGame = require('../ethereum/build/OddEvenBet.json');
+const compiledDeployer = require("../src/ethereum/build/BetFactory.json");
+const compiledBettingGame = require("../src/ethereum/oddEvenBet");
 
 let accounts;
 let deployer;
 let betGameAddress;
 let betGame;
 
-const INITIAL_STRING = 'Hi there!';
+const INITIAL_STRING = "Hi there!";
 beforeEach(async () => {
     // Get a list of all acc
     accounts = await web3.eth.getAccounts();
@@ -21,11 +21,11 @@ beforeEach(async () => {
         JSON.parse(compiledDeployer.interface)
     )
         .deploy({ data: compiledDeployer.bytecode })
-        .send({ from: accounts[0], gas: '1000000' });
+        .send({ from: accounts[0], gas: "1000000" });
 
     await deployer.methods.createGame().send({
         from: accounts[0],
-        gas: '1000000',
+        gas: "1000000",
     });
 
     [betGameAddress] = await deployer.methods.getDeployedGames().call();
@@ -36,21 +36,21 @@ beforeEach(async () => {
     );
 });
 
-describe('Betting Game', () => {
-    it('deploys a contract', () => {
+describe("Betting Game", () => {
+    it("deploys a contract", () => {
         assert.ok(deployer.options.address);
         assert.ok(betGame.options.address);
     });
 
-    it('marks the deployer as the betGame manager', async () => {
+    it("marks the deployer as the betGame manager", async () => {
         const manager = await betGame.methods.manager().call();
         assert.strictEqual(manager, accounts[0]);
     });
 
-    it('requires minimum bet amount to enter', async () => {
+    it("requires minimum bet amount to enter", async () => {
         try {
-            await betGame.methods.bet('even').send({
-                value: '01',
+            await betGame.methods.bet("even").send({
+                value: "01",
                 from: accounts[1],
             });
 
@@ -60,13 +60,13 @@ describe('Betting Game', () => {
         }
     });
 
-    it('lets participant to join the game by betting', async () => {
-        await betGame.methods.bet('even').send({
-            value: '101',
+    it("lets participant to join the game by betting", async () => {
+        await betGame.methods.bet("even").send({
+            value: "101",
             from: accounts[1],
         });
-        await betGame.methods.bet('odd').send({
-            value: '101',
+        await betGame.methods.bet("odd").send({
+            value: "101",
             from: accounts[2],
         });
         const evenBettorCount = await betGame.methods.evenBettorCount().call();
@@ -75,11 +75,11 @@ describe('Betting Game', () => {
         assert.ok(oddBettorCount > 0);
     });
 
-    it('requires a manager to pick the winner', async () => {
+    it("requires a manager to pick the winner", async () => {
         try {
             await betGame.methods.getWinner().send({
                 from: accounts[1],
-                gas: '1000000',
+                gas: "1000000",
             });
 
             assert(false);
@@ -88,33 +88,33 @@ describe('Betting Game', () => {
         }
     });
 
-    it('processes winning decision and lets winners take their prize', async () => {
-        await betGame.methods.bet('even').send({
-            value: '101',
+    it("processes winning decision and lets winners take their prize", async () => {
+        await betGame.methods.bet("even").send({
+            value: "101",
             from: accounts[1],
         });
-        await betGame.methods.bet('odd').send({
-            value: '101',
+        await betGame.methods.bet("odd").send({
+            value: "101",
             from: accounts[2],
         });
 
         let account;
         await betGame.methods.getWinner().send({
             from: accounts[0],
-            gas: '1000000',
+            gas: "1000000",
         });
         const winningDecision = await betGame.methods.winningDecision().call();
 
-        if (winningDecision == 'even') {
+        if (winningDecision == "even") {
             await betGame.methods.getPrize().send({
                 from: accounts[1],
-                gas: '1000000',
+                gas: "1000000",
             });
             account = accounts[1];
         } else {
             await betGame.methods.getPrize().send({
                 from: accounts[2],
-                gas: '1000000',
+                gas: "1000000",
             });
             account = accounts[2];
         }
@@ -127,15 +127,15 @@ describe('Betting Game', () => {
         console.log(`\n\nPRIZE POOL: ${prizePool} \n\n`);
 
         assert.ok(winningDecision);
-        assert.ok(balance > '100');
+        assert.ok(balance > "100");
         assert.ok(prizePool == 0);
     });
 
-    it('does not let anyone enter once decision is done', async () => {
+    it("does not let anyone enter once decision is done", async () => {
         // through the procedure of the test, winner is already
         // picked before even calling this function
         try {
-            await betGame.methods.bet('even').send({
+            await betGame.methods.bet("even").send({
                 from: accounts[3],
             });
             assert(false);

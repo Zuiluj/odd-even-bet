@@ -2,13 +2,13 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 
 // NOTE: Change contract file name when needed
-const compiledContract = require('./build/Contract.json');
+const compiledContract = require('./build/BetFactory.json');
 require('dotenv').config();
 
 // Create a provider to give to web3
 const provider = new HDWalletProvider(
-    process.env.MNEMONIC,
-    process.env.INFURA_RINKEBY
+    process.env.REACT_APP_MNEMONIC,
+    process.env.REACT_APP_INFURA_RINKEBY
 );
 const web3 = new Web3(provider);
 

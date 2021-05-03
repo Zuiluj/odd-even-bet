@@ -1,10 +1,13 @@
-import GameList from "./components/GameList";
+import GameList from './components/GameList';
+import Layout from './components/Layout';
 
 function App() {
     return (
-        <div className="App">
-            <GameList />
-        </div>
+        <Layout>
+            <div className="App">
+                <GameList />
+            </div>
+        </Layout>
     );
 }
 

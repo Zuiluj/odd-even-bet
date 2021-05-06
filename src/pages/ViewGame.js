@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import web3 from '../ethereum/web3';
-import BetGame from '../ethereum/oddEvenBet';
-import SplitSection from '../components/splitSection';
+import web3 from "../ethereum/web3";
+import BetGame from "../ethereum/oddEvenBet";
+import SplitSection from "../components/splitSection";
+import Helmet from "../components/Helmet";
 
 const ViewGame = (props) => {
     const [game, setGame] = useState({});
     const [oddBettors, setOddBettors] = useState(0);
     const [evenBettors, setEvenBettors] = useState(0);
     const [validGame, setValidGame] = useState(true);
-    const [winner, setWinner] = useState('');
+    const [winner, setWinner] = useState("");
 
     useEffect(async () => {
         const betGame = BetGame(props.match.params.addr);
@@ -22,6 +23,7 @@ const ViewGame = (props) => {
 
     return (
         <div>
+            <Helmet subTitle="View game" />
             <SplitSection
                 oddBettors={oddBettors}
                 evenBettors={evenBettors}

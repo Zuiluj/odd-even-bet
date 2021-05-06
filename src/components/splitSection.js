@@ -1,10 +1,10 @@
-import { Divider, Grid, Header, Segment } from 'semantic-ui-react';
-import { FaDiceThree, FaDiceSix } from 'react-icons/fa';
+import { Divider, Grid, Header, Segment } from "semantic-ui-react";
+import { FaDiceThree, FaDiceSix } from "react-icons/fa";
 
-import Section from '../components/section';
-import EnterGame from '../components/enterGame';
-import PickWinner from '../components/pickWinner';
-import ClaimPrize from '../components/claimPrize';
+import Section from "../components/section";
+import EnterGame from "../components/enterGame";
+import PickWinner from "../components/pickWinner";
+import ClaimPrize from "../components/claimPrize";
 
 const SplitSection = (props) => {
     const { validGame, winner } = props;
@@ -12,16 +12,16 @@ const SplitSection = (props) => {
         <div>
             <Divider horizontal></Divider>
             <Header block as="h2" textAlign="center" attached="top">
-                {winner != '' && (
+                {winner != "" && (
                     <div>
                         WINNER:
                         <br />
                         <span
                             style={{
-                                color: '#CF4130',
-                                textTransform: 'uppercase',
-                                fontWeight: 'bold',
-                                fontSize: '40px',
+                                color: "#CF4130",
+                                textTransform: "uppercase",
+                                fontWeight: "bold",
+                                fontSize: "40px",
                             }}
                         >
                             {winner}
@@ -31,11 +31,11 @@ const SplitSection = (props) => {
             </Header>
             <Segment
                 style={{
-                    color: '#4CB393',
-                    overflowX: 'hidden',
-                    fontSize: '20px',
-                    fontWeight: 'bold',
-                    textAlign: 'center',
+                    color: "#4CB393",
+                    overflowX: "hidden",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    textAlign: "center",
                 }}
                 attached
             >
@@ -47,7 +47,7 @@ const SplitSection = (props) => {
 
                     <Section
                         header="Odd Bettors"
-                        icon={<FaDiceThree style={{ fontSize: '50px' }} />}
+                        icon={<FaDiceThree style={{ fontSize: "50px" }} />}
                         footer={`${props.oddBettors} Players`}
                         form={
                             <EnterGame
@@ -60,7 +60,7 @@ const SplitSection = (props) => {
 
                     <Section
                         header="Even Bettors"
-                        icon={<FaDiceSix style={{ fontSize: '50px' }} />}
+                        icon={<FaDiceSix style={{ fontSize: "50px" }} />}
                         footer={`${props.evenBettors} Players`}
                         form={
                             <EnterGame
@@ -82,7 +82,10 @@ const SplitSection = (props) => {
                             />
                         </Grid.Column>
                         <Grid.Column>
-                            <ClaimPrize />
+                            <ClaimPrize
+                                validGame={validGame}
+                                gameAddr={props.gameAddress}
+                            />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

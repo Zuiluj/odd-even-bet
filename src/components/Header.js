@@ -1,12 +1,13 @@
-import { Menu, Icon } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Menu, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Header = () => {
     const navigate = (link) => {
         <Link to={link}></Link>;
     };
     return (
-        <Menu pointing secondary style={{ marginTop: '10px' }}>
+        <Menu pointing secondary style={{ marginTop: "10px" }}>
             <Menu.Item>
                 <Link to="/">
                     <Icon name="game" />
@@ -15,8 +16,7 @@ const Header = () => {
             </Menu.Item>
             <Menu.Menu position="right">
                 <Menu.Item>
-                    <Link to="/newgame">
-                        {' '}
+                    <Link to="/newGame">
                         <Icon name="plus" />
                         New Game
                     </Link>

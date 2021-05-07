@@ -1,51 +1,55 @@
 {
-  "name": "odd-even-betting-game",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "npm run contract-build && mocha --timeout 10000",
-    "start": "react-scripts start",
-    "contract-build": "node ethereum/compile.js",
-    "react-build": "react-scripts build",
-    "react-test": "react-scripts test",
-    "react-eject": "react-scripts eject"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@craco/craco": "^6.1.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "fs-extra": "^9.1.0",
-    "ganache-cli": "^6.12.2",
-    "mocha": "^8.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^4.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3",
-    "solc": "^0.8.4",
-    "truffle-hdwallet-provider": "0.0.3",
-    "web-vitals": "^1.0.1"
-  },
-  "devDependencies": {
-    "web3": "^1.0.0-beta.26"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "odd-even-betting-game",
+    "version": "1.0.0",
+    "description": "",
+    "homepage": "https://zuiluj.github.io/odd-even-bet",
+    "scripts": {
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
+        "test": "npm run contract-build && mocha --timeout 10000",
+        "start": "react-scripts start",
+        "contract-build": "node ethereum/compile.js",
+        "react-build": "react-scripts build",
+        "react-test": "react-scripts test",
+        "react-eject": "react-scripts eject"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@craco/craco": "^6.1.2",
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^11.1.0",
+        "@testing-library/user-event": "^12.1.10",
+        "fs-extra": "^9.1.0",
+        "ganache-cli": "^6.12.2",
+        "gh-pages": "^3.1.0",
+        "mocha": "^8.3.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-helmet": "^6.1.0",
+        "react-icons": "^4.2.0",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "semantic-ui-css": "^2.4.1",
+        "semantic-ui-react": "^2.0.3",
+        "solc": "^0.8.4",
+        "truffle-hdwallet-provider": "0.0.3",
+        "web-vitals": "^1.0.1"
+    },
+    "devDependencies": {
+        "web3": "^1.0.0-beta.26"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
